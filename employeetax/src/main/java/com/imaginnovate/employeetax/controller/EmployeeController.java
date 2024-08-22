@@ -14,17 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.imaginnovate.employeetax.entity.Employee;
 import com.imaginnovate.employeetax.service.EmployeeService;
 
+import jakarta.validation.Valid;
+
 
 
 	@RequestMapping("/api/employees")
 	@RestController
+	@Validated
 	public class EmployeeController {
 
 	    @Autowired
 	    private EmployeeService empService;
 
 	    @PostMapping("/save")
-	    ResponseEntity createEmployee(@RequestBody @Validated Employee emp){
+	    ResponseEntity createEmployee(@Valid @RequestBody Employee emp){
 	        return new ResponseEntity(empService.saveEmployee(emp), HttpStatus.CREATED);
 	    }
 
