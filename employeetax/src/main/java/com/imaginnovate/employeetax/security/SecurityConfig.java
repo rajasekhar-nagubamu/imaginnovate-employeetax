@@ -41,7 +41,7 @@ public class SecurityConfig {
 						.requestMatchers("/admin_only/**").hasAuthority("ADMIN").anyRequest().authenticated())
 				.userDetailsService(userDetailsServiceImp)
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) 
 				.exceptionHandling(e -> e
 						.accessDeniedHandler((request, response, accessDeniedException) -> response.setStatus(403))
 						.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
